@@ -185,7 +185,7 @@ export default function App() {
         </div>
 
         {/* Charts Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           
           {/* Production Timeline */}
           <div className="p-5 rounded-2xl border border-slate-200 bg-white flex flex-col gap-4 lg:col-span-2 shadow-sm">
@@ -220,32 +220,8 @@ export default function App() {
             </div>
           </div>
           
-          {/* Cost Comparison */}
-          <div className="p-5 rounded-2xl border border-slate-200 bg-white flex flex-col gap-4 shadow-sm">
-            <h3 className="text-sm font-bold text-slate-900">운영 시나리오 비용 비교</h3>
-            <div className="h-[300px] w-full">
-              <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={result.costComparison} margin={{ top: 20, right: 10, left: -20, bottom: 0 }}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" vertical={false} />
-                  <XAxis dataKey="name" stroke="#64748b" fontSize={11} tickLine={false} axisLine={false} />
-                  <YAxis stroke="#64748b" fontSize={11} tickLine={false} axisLine={false} tickFormatter={(val) => `${val}백`} />
-                  <RechartsTooltip 
-                    formatter={(value: number) => [`${value} 백만원`, '비용']}
-                    contentStyle={{ backgroundColor: '#ffffff', borderColor: '#e2e8f0', color: '#0f172a', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }}
-                    cursor={{fill: '#f1f5f9', opacity: 0.6}}
-                  />
-                  <Bar dataKey="cost" radius={[6, 6, 0, 0]} maxBarSize={60}>
-                    {result.costComparison.map((entry, index) => (
-                      <Cell key={`cell-${index}`} fill={entry.fill} />
-                    ))}
-                  </Bar>
-                </BarChart>
-              </ResponsiveContainer>
-            </div>
-          </div>
-
           {/* Bottleneck Analysis */}
-          <div className="p-5 rounded-2xl border border-slate-200 bg-white flex flex-col gap-4 xl:col-span-3 shadow-sm">
+          <div className="p-5 rounded-2xl border border-slate-200 bg-white flex flex-col gap-4 lg:col-span-2 shadow-sm">
             <div className="flex justify-between items-center">
               <h3 className="text-sm font-bold text-slate-900">공정별 대기시간 및 병목 지수</h3>
               {result.bottleneckRate > 90 && (
